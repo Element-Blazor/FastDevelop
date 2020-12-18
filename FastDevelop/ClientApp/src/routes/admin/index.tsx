@@ -15,6 +15,8 @@ import AdvancedForm from './form/Advanced';
 import Wizard from './form/Wizard';
 import Editor from './form/Editor';
 import CustomIndex from './customer/index';
+import PageIndex from './page/index';
+import { compact } from 'lodash';
 
 type NavItem = {
     label: string;
@@ -24,7 +26,12 @@ type NavItem = {
     component?: React.ReactType;
     getComponent?: () => Promise<React.ReactType>;
 };
-const navigations:Array<NavItem> = [
+const navigations: Array<NavItem> = [
+    {
+        label: "页面管理",
+        path: "pages",
+        component: PageIndex
+    },
     {
         label: '导航',
         children: [
@@ -138,8 +145,8 @@ export interface AdminProps extends RouteComponentProps<any>  {
     store: IMainStore
 };
 
-@inject("store")
-@observer
+inject("store")
+observer
 export default class Admin extends React.Component<AdminProps> {
     renderHeader() {
         const store = this.props.store;

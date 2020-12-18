@@ -1,4 +1,3 @@
-import filter = require('lodash/filter');
 import * as React from 'react';
 import AMisRenderer from '../components/AMisRenderer';
 import { inject, observer } from 'mobx-react';
@@ -73,9 +72,9 @@ const schema = {
     ]
 };
 
-@inject("store")
-@withRouter
-@observer
+inject("store")
+withRouter
+observer
 export default class LoginRoute extends React.Component<LoginProps> {
     handleFormSaved = (value:any) => {
         const store = this.props.store;

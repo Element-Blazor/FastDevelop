@@ -12,7 +12,7 @@ import RootRoute from './routes/index';
 import './utils/polyfill';
 
 export default function():JSX.Element {
-    const store = (window as any).store = MainStore.create({}, {
+    const store = window["store"] = MainStore.create({}, {
         fetcher: ({
             url,
             method,
@@ -67,7 +67,7 @@ export default function():JSX.Element {
     // 正式环境会部署在 gh-pages 上，所以用纯前端 api mock
     // 如果你要用于自己的项目，请删掉这段代码
     if (process.env.NODE_ENV === 'production') {
-        (require as any)(['./mock/axiosMock'], (mock:any) => mock.init());
+        require(['./mock/axiosMock'], (mock:any) => mock.init());
     }
 
     return (
